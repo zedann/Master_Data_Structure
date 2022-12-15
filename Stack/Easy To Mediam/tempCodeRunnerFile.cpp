@@ -1,0 +1,1 @@
+if(s.empty() || !arePair(s.top(),exp[i]))

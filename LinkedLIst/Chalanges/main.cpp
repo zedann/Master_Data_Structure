@@ -37,7 +37,7 @@ public:
 			head = tail = item;
         }
 		else{
-			tail->next = item, tail = item;
+			tail->next = item, item->next = nullptr,tail = item  ;
 
         }
 		++length;
@@ -98,6 +98,22 @@ public:
             
         }
     }
+    //reverse 
+    void reverse(){
+        Node*cur = head;
+        Node*prev = nullptr;
+        Node*next = nullptr;
+        while (cur)
+        {
+            next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
+            if(!next)
+            head = cur;
+        }
+        
+    }
     Node*get_head(){
         return head;
     }
@@ -122,14 +138,13 @@ public:
 int main() {
 
 	LinkedList list1;
-	LinkedList list2;
-    cout << list1.is_same(list2) << "\n";
-    list1.insert_end(6);
-    list1.insert_end(10);
-    list2.insert_end(6);
-    cout << list1.is_same(list2) << "\n";
-    list2.insert_end(10);
-    cout << list1.is_same(list2) << "\n";
+	list1.insert_end(1);
+	list1.insert_end(2);
+	list1.insert_end(3);
+	list1.insert_end(4);
+    // list1.reverse();
+    list1.print();
+    
 	return 0;
 }
 

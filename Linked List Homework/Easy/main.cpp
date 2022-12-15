@@ -78,7 +78,20 @@ class LinkedList{
     }
     //3
     void reverse(){
-        //cant solve i know we use swap 
+        Node*cur = head;
+        Node*prev = nullptr;
+        Node*next = nullptr;
+        while (cur)
+        {
+            next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
+            if(!cur){
+                head = prev;
+            }
+        }
+        
     }
     //4
     void delete_even_pos(){
@@ -102,10 +115,11 @@ int main() {
     l.insert_end(6);
     l.insert_end(7);
     // l.delete_node_with_key(1);
-    l.swap_pairs();
-    // l.reverse();
-    l.delete_even_pos();
+    // l.swap_pairs();
+    // // l.reverse();
+    // l.delete_even_pos();
     cout<<"Length "<<l.getLength()<<"\n";
+    l.reverse();
     l.print();
 	
 
