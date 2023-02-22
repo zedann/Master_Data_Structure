@@ -2,11 +2,11 @@
 using namespace std;
 int main()
 {
-    int n;
-    cin >> n;
-    int arr[n];
-    for(int i = 0 ; i < n ; i++)
-        cin >> arr[i];
+    // int n;
+    // cin >> n;
+    // int arr[n];
+    // for(int i = 0 ; i < n ; i++)
+    //     cin >> arr[i];
     // int max_value = arr[0] , scndmax;
     // for(int i = 1 ; i < n ; i++)//O(n)
     // {
@@ -37,18 +37,39 @@ int main()
     // }
     // cout << "\n";
 
-    int freq[501] = {0};
-    for(int i = 0 ; i < n ;i++)
-        freq[arr[i]] = i+1;
-    int q;
-    cin >> q;
-    while (q--)
+    // int freq[501] = {0};
+    // for(int i = 0 ; i < n ;i++)
+    //     freq[arr[i]] = i+1;
+    // int q;
+    // cin >> q;
+    // while (q--)
+    // {
+    //     int x;
+    //     cin >> x;
+    //     if(!freq[x]) cout << "-1" << "\n";
+    //     else cout << freq[x] << "\n";
+    // }
+
+    //hard problems
+    int k , n;
+    cin >> k >> n;
+    vector<int>v(n+1),pref(n+1);
+    for(int i = 1;  i<= n;i++)
     {
-        int x;
-        cin >> x;
-        if(!freq[x]) cout << "-1" << "\n";
-        else cout << freq[x] << "\n";
+        cin >> v[i];
+        pref[i] = pref[i-1] + v[i];
     }
-    
+    int ans = INT_MIN ,strt = 0;
+
+    for(int i = 1 ; i <= n - 2;i++)
+    {
+        int sum = pref[i+2] - pref[i-1];
+        if(sum >= ans)
+        {
+            ans = sum;
+            strt= i-1;
+        }
+    }
+    cout << strt << " " << strt+2 << " " << ans << "\n";
     return 0;
 }
